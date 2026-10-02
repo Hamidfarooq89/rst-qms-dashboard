@@ -1238,28 +1238,23 @@ function displayDocuments(files) {
    VIEW DOCUMENT
    ===================================================== */
 
+/* =====================================================
+   VIEW DOCUMENT
+   ===================================================== */
+
 function viewDocument(url, name) {
 
     document.getElementById(
         'modalTitle'
     ).innerText = name;
 
-
-    /*
-       Google Drive viewer.
-       This allows many common documents to be
-       viewed online without downloading.
-    */
-
     const viewerURL =
-        'https://drive.google.com/viewerng/viewer?embedded=true&url=' +
+        'https://docs.google.com/gview?embedded=true&url=' +
         encodeURIComponent(url);
-
 
     document.getElementById(
         'documentFrame'
     ).src = viewerURL;
-
 
     document.getElementById(
         'viewerModal'
