@@ -1246,11 +1246,10 @@ function viewDocument(url, name) {
 
     document.getElementById('modalTitle').innerText = name;
 
-    // Convert Google Drive file URL to native preview URL
     const fileIdMatch = url.match(/\/d\/([^\/]+)/);
 
     if (!fileIdMatch) {
-        alert('Unable to open this document.');
+        alert('Unable to identify the Google Drive file.');
         return;
     }
 
@@ -1259,11 +1258,9 @@ function viewDocument(url, name) {
     const previewURL =
         'https://drive.google.com/file/d/' +
         fileId +
-        '/preview';
+        '/view';
 
-    document.getElementById('documentFrame').src = previewURL;
-
-    document.getElementById('viewerModal').style.display = 'block';
+    window.open(previewURL, '_blank');
 }
 
 
