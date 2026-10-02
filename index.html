@@ -1244,22 +1244,26 @@ function displayDocuments(files) {
 
 function viewDocument(url, name) {
 
-    document.getElementById(
-        'modalTitle'
-    ).innerText = name;
+    document.getElementById('modalTitle').innerText = name;
 
-    const viewerURL =
-        'https://docs.google.com/gview?embedded=true&url=' +
-        encodeURIComponent(url);
+    // Convert Google Drive file URL to native preview URL
+    const fileIdMatch = url.match(/\/d\/([^\/]+)/);
 
-    document.getElementById(
-        'documentFrame'
-    ).src = viewerURL;
+    if (!fileIdMatch) {
+        alert('Unable to open this document.');
+        return;
+    }
 
-    document.getElementById(
-        'viewerModal'
-    ).style.display = 'block';
+    const fileId = fileIdMatch[1];
 
+    const previewURL =
+        'https://drive.google.com/file/d/' +
+        fileId +
+        '/preview';
+
+    document.getElementById('documentFrame').src = previewURL;
+
+    document.getElementById('viewerModal').style.display = 'block';
 }
 
 
